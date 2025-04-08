@@ -163,6 +163,11 @@ async def connect(sid, environ, auth):
         http_referer=http_referer,
         http_cookie=http_cookie,
     )
+    from chainlit.server import connect_mcp
+
+    from chainlit.server import UserParam
+    from chainlit.types import ConnectMCPRequest,ConnectStdioMCPRequest,ConnectSseMCPRequest
+    await connect_mcp(payload=ConnectStdioMCPRequest(sessionId=session_id,clientType="stdio",name="test123",fullCommand="npx -y @modelcontextprotocol/server-filesystem  /Users/shareit/qa-assistant"),current_user=None)
 
     trace_event("connection_successful")
     return True

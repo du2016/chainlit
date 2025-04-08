@@ -246,3 +246,12 @@ export const mcpState = atom<IMcp[]>({
   default: [],
   effects: [localStorageEffect<IMcp[]>('mcp_storage_key')]
 });
+
+
+// export const mcpState = atom<IMcp[]>({
+//   key: 'Mcp',
+//   default: JSON.parse(
+//     '[{"name":"filesystem","tools":[{"name":"read_file"},{"name":"read_multiple_files"},{"name":"write_file"},{"name":"edit_file"},{"name":"create_directory"},{"name":"list_directory"},{"name":"directory_tree"},{"name":"move_file"},{"name":"search_files"},{"name":"get_file_info"},{"name":"list_allowed_directories"}],"clientType":"stdio","command":"npx -y @modelcontextprotocol/server-filesystem /data/chainlit","status":"connected"},{"name":"sqlite","tools":[{"name":"read_query"},{"name":"write_query"},{"name":"create_table"},{"name":"list_tables"},{"name":"describe_table"},{"name":"append_insight"}],"clientType":"stdio","command":"uvx mcp-server-sqlite --db-path /data/sqlite_mcp.db","status":"connected"}]'
+//   ),
+//   effects: [localStorageEffect<IMcp[]>('mcp_storage_key')]
+// });

@@ -124,13 +124,15 @@ export default function MessageComposer({
   );
 
   const submit = useCallback(() => {
-    if (disabled || (value === '' && attachments.length === 0)) {
+    const newvalue =selectedCommand?.id ? "/"+selectedCommand?.id + " " +value : value
+    console.log("selectedCommand",selectedCommand)
+    if (disabled ) {
       return;
     }
     if (askUser) {
-      onReply(value);
+      onReply(newvalue);
     } else {
-      onSubmit(value, attachments, selectedCommand?.id);
+      onSubmit(newvalue, attachments);
     }
     setAttachments([]);
     inputRef.current?.reset();
@@ -187,7 +189,7 @@ export default function MessageComposer({
               <Settings className="!size-6" />
             </Button>
           )}
-          <McpButton disabled={disabled} />
+          {/* <McpButton disabled={disabled} /> */}
           <VoiceButton disabled={disabled} />
           <CommandButtons
             disabled={disabled}
@@ -198,7 +200,7 @@ export default function MessageComposer({
         <div className="flex items-center gap-1">
           <SubmitButton
             onSubmit={submit}
-            disabled={disabled || !value.trim()}
+            disabled={disabled }
           />
         </div>
       </div>

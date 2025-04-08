@@ -1091,8 +1091,9 @@ async def connect_mcp(
                 status_code=401,
             )
 
-    mcp_enabled = config.features.mcp.enabled and config.code.on_mcp_connect is not None
-    if mcp_enabled:
+    # mcp_enabled = config.features.mcp.enabled and config.code.on_mcp_connect is not None
+    # if mcp_enabled:
+    if True:
         if payload.name in session.mcp_sessions:
             old_client_session, old_exit_stack = session.mcp_sessions[payload.name]
             if on_mcp_disconnect := config.code.on_mcp_disconnect:
@@ -1475,3 +1476,5 @@ async def serve(request: Request):
 app.include_router(router)
 
 import chainlit.socket  # noqa
+
+

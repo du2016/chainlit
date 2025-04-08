@@ -220,6 +220,7 @@ def chainlit_hello(args=None, **kwargs):
     trace_event("chainlit hello")
     hello_path = os.path.join(BACKEND_ROOT, "hello.py")
     run_chainlit(hello_path)
+    print("Hello World!")
 
 
 @cli.command("init")
