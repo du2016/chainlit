@@ -240,6 +240,7 @@ class McpStdioFeature(DataClassJsonMixin):
 @dataclass
 class McpFeature(DataClassJsonMixin):
     enabled: bool = True
+    config_path: str = ""
     sse: McpSseFeature = Field(default_factory=McpSseFeature)
     stdio: McpStdioFeature = Field(default_factory=McpStdioFeature)
 

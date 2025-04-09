@@ -167,7 +167,14 @@ async def connect(sid, environ, auth):
 
     from chainlit.server import UserParam
     from chainlit.types import ConnectMCPRequest,ConnectStdioMCPRequest,ConnectSseMCPRequest
-    await connect_mcp(payload=ConnectStdioMCPRequest(sessionId=session_id,clientType="stdio",name="test123",fullCommand="npx -y @modelcontextprotocol/server-filesystem  /Users/shareit/qa-assistant"),current_user=None)
+    import json 
+    with open(config.features.mcp.config_path, 'r', encoding='utf-8') as f:
+        data=json.loads(f)
+        for item in data:
+            if item["type"]=="sse":
+                await connect_mcp(payload=ConnectSseMCPRequest(sessionId=session_id,clientType=item["type"],name=item["name"],url=item["url"]),current_user=None)
+            elif item["type"]=="stdio":
+                await connect_mcp(payload=ConnectStdioMCPRequest(sessionId=session_id,clientType=item["type"],name=item["name"],fullCommand=item["command"]),current_user=None)
 
     trace_event("connection_successful")
     return True
